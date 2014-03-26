@@ -1,11 +1,12 @@
 Name:           ttfautohint
-Version:        0.97
+Version:        1.00
 Release:        1%{?dist}
 Summary:        Automated hinting utility for TrueType fonts
 License:        FTL or GPLv2
 URL:            http://www.freetype.org/ttfautohint
 Source0:        http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.gz
 BuildRequires:  freetype-devel
+BuildRequires:  harfbuzz-devel
 BuildRequires:  qt4-devel
 Provides:       bundled(gnulib)
 
@@ -32,8 +33,8 @@ This is a GUI of %{name} based on Qt4.
 %setup -q
 
 %build
-%configure
-make %{?_smp_mflags} V=1
+%configure --disable-silent-rules
+make %{?_smp_mflags}
 
 %install
 make install DESTDIR=%{buildroot}
@@ -48,8 +49,11 @@ make install DESTDIR=%{buildroot}
 %{_bindir}/ttfautohintGUI
 
 %changelog
+* Sat Mar 22 2014 Christopher Meng <rpm@cicku.me> - 1.00-1
+- Update to 1.00
+
 * Wed Nov 13 2013 Christopher Meng <rpm@cicku.me> - 0.97-1
-- New version.
+- Update to 0.97
 - Share docs between main<->sub package.
 
 * Fri Aug 09 2013 Christopher Meng <rpm@cicku.me> - 0.96-1
