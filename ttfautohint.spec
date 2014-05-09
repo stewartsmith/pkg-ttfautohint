@@ -1,5 +1,5 @@
 Name:           ttfautohint
-Version:        1.00
+Version:        1.1
 Release:        1%{?dist}
 Summary:        Automated hinting utility for TrueType fonts
 License:        FTL or GPLv2
@@ -37,7 +37,7 @@ This is a GUI of %{name} based on Qt4.
 make %{?_smp_mflags}
 
 %install
-make install DESTDIR=%{buildroot}
+%make_install
 
 %files
 %doc AUTHORS COPYING NEWS README THANKS TODO *.TXT
@@ -49,6 +49,9 @@ make install DESTDIR=%{buildroot}
 %{_bindir}/ttfautohintGUI
 
 %changelog
+* Wed May 07 2014 Christopher Meng <rpm@cicku.me> - 1.1-1
+- Update to 1.1
+
 * Sat Mar 22 2014 Christopher Meng <rpm@cicku.me> - 1.00-1
 - Update to 1.00
 
