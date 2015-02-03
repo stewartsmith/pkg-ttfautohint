@@ -1,5 +1,5 @@
 Name:           ttfautohint
-Version:        1.2
+Version:        1.3
 Release:        1%{?dist}
 Summary:        Automated hinting utility for TrueType fonts
 License:        FTL or GPLv2
@@ -49,6 +49,9 @@ make %{?_smp_mflags}
 %{_bindir}/ttfautohintGUI
 
 %changelog
+* Tue Jan 27 2015 Christopher Meng <rpm@cicku.me> - 1.3-1
+- Update to 1.3
+
 * Sat Oct 11 2014 Christopher Meng <rpm@cicku.me> - 1.2-1
 - Update to 1.2
 
