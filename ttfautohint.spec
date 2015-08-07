@@ -34,17 +34,19 @@ This is a GUI of %{name} based on Qt4.
 
 %build
 %configure --disable-silent-rules
-make %{?_smp_mflags}
+%make_build
 
 %install
 %make_install
 
 %files
-%doc AUTHORS COPYING NEWS README THANKS TODO *.TXT
+%doc AUTHORS NEWS README THANKS TODO *.TXT
 %doc doc/img doc/ttfautohint.{html,pdf,txt}
+%license COPYING
 %{_bindir}/ttfautohint
 
 %files gui
+%license COPYING
 %{_pkgdocdir}/
 %{_bindir}/ttfautohintGUI
 
