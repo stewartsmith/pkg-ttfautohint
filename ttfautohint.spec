@@ -1,6 +1,6 @@
 Name:           ttfautohint
 Version:        1.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Automated hinting utility for TrueType fonts
 License:        FTL or GPLv2
 URL:            http://www.freetype.org/ttfautohint
@@ -51,6 +51,9 @@ This is a GUI of %{name} based on Qt4.
 %{_bindir}/ttfautohintGUI
 
 %changelog
+* Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Mon Feb 13 2017 Yaakov Selkowitz <yselkowi@redhat.com> - 1.6-1
 - new version (#1400320)
 
