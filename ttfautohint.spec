@@ -1,5 +1,5 @@
 Name:           ttfautohint
-Version:        1.7
+Version:        1.8.1
 Release:        1%{?dist}
 Summary:        Automated hinting utility for TrueType fonts
 License:        FTL or GPLv2
@@ -7,8 +7,10 @@ URL:            http://www.freetype.org/ttfautohint
 Source0:        http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.gz
 BuildRequires:  freetype-devel
 BuildRequires:  harfbuzz-devel
+BuildRequires:  pkgconfig
 BuildRequires:  qt4-devel
 Provides:       bundled(gnulib)
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 %description
 This is a utility which takes a TrueType font as the input, removes its 
@@ -19,6 +21,7 @@ platforms which don't use FreeType.
 
 %package        gui
 Summary:        GUI for %{name} based on Qt4
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 %description    gui
 %{name} is a utility which takes a TrueType font as the input, removes its 
@@ -29,15 +32,43 @@ platforms which don't use FreeType.
 
 This is a GUI of %{name} based on Qt4. 
 
+%package        libs
+Summary:        Library for %{name}
+
+%description    libs
+lib%{name} is a library which takes a TrueType font as the input, removes its 
+bytecode instructions (if any), and returns a new font where all glyphs 
+are bytecode hinted using the information given by FreeType's autohinting 
+module. The idea is to provide the excellent quality of the autohinter on 
+platforms which don't use FreeType.
+
+%package        devel
+Summary:        Development files for %{name}-libs
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+
+%description    devel
+lib%{name} is a library which takes a TrueType font as the input, removes its 
+bytecode instructions (if any), and returns a new font where all glyphs 
+are bytecode hinted using the information given by FreeType's autohinting 
+module. The idea is to provide the excellent quality of the autohinter on 
+platforms which don't use FreeType.
+
+
 %prep
 %setup -q
 
 %build
-%configure --disable-silent-rules
+%configure --disable-silent-rules --disable-static
 %make_build
 
 %install
 %make_install
+
+find %{buildroot} -name '*.la' -delete
+
+%post libs -p /sbin/ldconfig
+
+%postun libs -p /sbin/ldconfig
 
 %files
 %doc AUTHORS NEWS README THANKS TODO *.TXT
@@ -50,7 +81,21 @@ This is a GUI of %{name} based on Qt4.
 %{_pkgdocdir}/
 %{_bindir}/ttfautohintGUI
 
+%files libs
+%license COPYING
+%{_libdir}/libttfautohint.so.1*
+
+%files devel
+%license COPYING
+%{_includedir}/ttfautohint*.h
+%{_libdir}/libttfautohint.so
+%{_libdir}/pkgconfig/ttfautohint.pc
+
 %changelog
+* Fri Jan 12 2018 Yaakov Selkowitz <yselkowi@redhat.com> - 1.8.1-1
+- new version (#1531029)
+- add shared library
+
 * Tue Nov 14 2017 Yaakov Selkowitz <yselkowi@redhat.com> - 1.7-1
 - new version (#1485670)
 
