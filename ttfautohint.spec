@@ -67,9 +67,7 @@ platforms which don't use FreeType.
 
 find %{buildroot} -name '*.la' -delete
 
-%post libs -p /sbin/ldconfig
-
-%postun libs -p /sbin/ldconfig
+%ldconfig_scriplets libs
 
 %files
 %doc AUTHORS NEWS README THANKS TODO *.TXT
