@@ -21,7 +21,7 @@ module. The idea is to provide the excellent quality of the autohinter on
 platforms which don't use FreeType.
 
 %package        gui
-Summary:        GUI for %{name} based on Qt4
+Summary:        GUI for %{name} based on Qt
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
 %description    gui
@@ -31,7 +31,7 @@ are bytecode hinted using the information given by FreeType's autohinting
 module. The idea is to provide the excellent quality of the autohinter on 
 platforms which don't use FreeType.
 
-This is a GUI of %{name} based on Qt4. 
+This is a GUI of %{name} based on Qt. 
 
 %package        libs
 Summary:        Library for %{name}
