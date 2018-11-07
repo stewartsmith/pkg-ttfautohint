@@ -5,6 +5,9 @@ Summary:        Automated hinting utility for TrueType fonts
 License:        FTL or GPLv2
 URL:            http://www.freetype.org/ttfautohint
 Source0:        http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.gz
+# https://bugzilla.redhat.com/1646687
+Patch0:         f18b7c859c92111446ca991743dd709e347d0301.patch
+
 BuildRequires:  gcc gcc-c++
 BuildRequires:  freetype-devel
 BuildRequires:  harfbuzz-devel
@@ -57,6 +60,7 @@ platforms which don't use FreeType.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure --disable-silent-rules --disable-static
@@ -93,6 +97,7 @@ find %{buildroot} -name '*.la' -delete
 %changelog
 * Wed Nov 07 2018 Yaakov Selkowitz <yselkowi@redhat.com> - 1.8.2-1
 - new version (#1607856)
+- Fix stem width offset handling in storage area (#1646687)
 
 * Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.1-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
