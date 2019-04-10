@@ -1,12 +1,10 @@
 Name:           ttfautohint
-Version:        1.8.2
-Release:        2%{?dist}
+Version:        1.8.3
+Release:        1%{?dist}
 Summary:        Automated hinting utility for TrueType fonts
 License:        FTL or GPLv2
 URL:            http://www.freetype.org/ttfautohint
 Source0:        http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.gz
-# https://bugzilla.redhat.com/1646687
-Patch0:         f18b7c859c92111446ca991743dd709e347d0301.patch
 
 BuildRequires:  gcc gcc-c++
 BuildRequires:  freetype-devel
@@ -60,7 +58,6 @@ platforms which don't use FreeType.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure --disable-silent-rules --disable-static
@@ -95,6 +92,9 @@ find %{buildroot} -name '*.la' -delete
 %{_libdir}/pkgconfig/ttfautohint.pc
 
 %changelog
+* Wed Apr 10 2019 Yaakov Selkowitz <yselkowi@redhat.com> - 1.8.3-1
+- new version (#1698372)
+
 * Sun Feb 03 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
