@@ -1,6 +1,6 @@
 Name:           ttfautohint
 Version:        1.8.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Automated hinting utility for TrueType fonts
 License:        FTL or GPLv2
 URL:            http://www.freetype.org/ttfautohint
@@ -92,6 +92,9 @@ find %{buildroot} -name '*.la' -delete
 %{_libdir}/pkgconfig/ttfautohint.pc
 
 %changelog
+* Fri Jan 31 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.3-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Sat Jul 27 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
