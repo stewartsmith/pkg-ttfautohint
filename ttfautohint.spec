@@ -6,6 +6,7 @@ License:        FTL or GPLv2
 URL:            http://www.freetype.org/ttfautohint
 Source0:        http://download.savannah.gnu.org/releases/freetype/%{name}-%{version}.tar.gz
 
+BuildRequires: make
 BuildRequires:  gcc gcc-c++
 BuildRequires:  freetype-devel
 BuildRequires:  harfbuzz-devel
