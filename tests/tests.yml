@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  tags:
+  - classic
+  roles:
+  - role: standard-test-source
+
+- hosts: localhost
+  tags:
+  - classic
+  roles:
+  - role: standard-test-basic
+    tests:
+    - smoke
+    required_packages:
+    - ttfautohint
+    - make
+    - fontforge
+    - lohit-devanagari-fonts
+    - wget
