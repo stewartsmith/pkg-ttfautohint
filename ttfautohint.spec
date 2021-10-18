@@ -76,11 +76,13 @@ find %{buildroot} -name '*.la' -delete
 %doc doc/img doc/ttfautohint.{html,pdf,txt}
 %license COPYING
 %{_bindir}/ttfautohint
+%{_mandir}/man1/ttfautohint.1*
 
 %files gui
 %license COPYING
 %{_pkgdocdir}/
 %{_bindir}/ttfautohintGUI
+%{_mandir}/man1/ttfautohintGUI.1*
 
 %files libs
 %license COPYING
