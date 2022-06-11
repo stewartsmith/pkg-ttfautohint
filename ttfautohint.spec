@@ -1,3 +1,5 @@
+%bcond_without gui
+
 Name:           ttfautohint
 Version:        1.8.4
 Release:        2%{?dist}
@@ -11,7 +13,9 @@ BuildRequires:  gcc gcc-c++
 BuildRequires:  freetype-devel
 BuildRequires:  harfbuzz-devel
 BuildRequires:  pkgconfig
+%if %{with gui}
 BuildRequires:  qt5-qtbase-devel
+%endif
 Provides:       bundled(gnulib)
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -22,6 +26,7 @@ are bytecode hinted using the information given by FreeType's autohinting
 module. The idea is to provide the excellent quality of the autohinter on 
 platforms which don't use FreeType.
 
+%if %{with gui}
 %package        gui
 Summary:        GUI for %{name} based on Qt
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
@@ -33,7 +38,8 @@ are bytecode hinted using the information given by FreeType's autohinting
 module. The idea is to provide the excellent quality of the autohinter on 
 platforms which don't use FreeType.
 
-This is a GUI of %{name} based on Qt. 
+This is a GUI of %{name} based on Qt.
+%endif
 
 %package        libs
 Summary:        Library for %{name}
@@ -61,7 +67,11 @@ platforms which don't use FreeType.
 %setup -q
 
 %build
+%if %{with gui}
 %configure --disable-silent-rules --disable-static
+%else
+%configure --disable-silent-rules --disable-static --with-qt=no
+%endif
 %make_build
 
 %install
@@ -78,11 +88,13 @@ find %{buildroot} -name '*.la' -delete
 %{_bindir}/ttfautohint
 %{_mandir}/man1/ttfautohint.1*
 
+%if %{with gui}
 %files gui
 %license COPYING
 %{_pkgdocdir}/
 %{_bindir}/ttfautohintGUI
 %{_mandir}/man1/ttfautohintGUI.1*
+%endif
 
 %files libs
 %license COPYING
